@@ -12,6 +12,7 @@
   "dependencies": {
     "eslint": "^4.19.1",
     "express": "^4.16.3",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "nodemon": "^1.17.4"
   }
 }
