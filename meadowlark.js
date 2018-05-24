@@ -10,6 +10,20 @@ var handlebars = require("express-handlebars").create({
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 
+app.use(require("body-parser").urlencoded({ extended: true }));
+
+app.get("/newsletter", function(req, res) {
+  res.render("newsletter", { csrf: "CSRF token goes here" });
+});
+
+app.post("/process", function(req, res) {
+  console.log("Form (from querystring):" + req.query.form);
+  console.log("CSRF token (from hidden form field):" + req.body._csrf);
+  console.log("Name (from visible form field):" + req.body.name);
+  console.log("Email (from visible form field):" + req.body.email);
+  res.redirect(303, "/thank-you");
+});
+
 app.set("port", process.env.PORT || 3000);
 
 app.use(express.static(__dirname + "/public"));
